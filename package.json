@@ -1,6 +1,6 @@
 {
   "name": "@ostro/validation",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0-alpha.1",
   "description": "Validation module for OstroJS",
   "main": "validationManager.js",
   "scripts": {
