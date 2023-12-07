@@ -1,14 +1,14 @@
 {
   "name": "@ostro/validation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Validation module for OstroJS",
   "main": "validationManager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@ostro/support": "^1.0.2",
-    "@ostro/contracts": "^1.0.0",
+    "@ostro/support": "^1.0.11",
+    "@ostro/contracts": "^1.0.2",
     "file-type": "^16.5.1"
   },
   "engines": {
