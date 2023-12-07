@@ -5,8 +5,8 @@ function leapYear(year) {
     return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 }
 
-function fileDetails(val) {
-    return fileType(val.getBufferData()) || { ext: val.getExtension(), mime: val.getMimetype() }
+async function fileDetails(val) {
+    return (await fileType.fromBuffer(val.getBufferData()) ) || { ext: val.getExtension(), mime: val.getMimetype() }
 }
 
 function isFile(obj = {}) {
@@ -417,9 +417,9 @@ var rules = {
         return isFile(val)
     },
 
-    mimes: function(val, attributes) {
+    mimes: async function(val, attributes) {
         try {
-            let filetype = fileDetails(val)
+            let filetype = await fileDetails(val)
             return attributes.split(',').includes(filetype.ext)
         } catch (e) {
             return false
