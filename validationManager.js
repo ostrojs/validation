@@ -15,8 +15,8 @@ class ValidationManager extends Macroable {
         return Promise.resolve(new validation(inputs, schema, messages))
     }
     validate(inputs, schema, messages = {}) {
-        return this.make(inputs, schema, messages).then(validation => {
-            if (validation.fails()) {
+        return this.make(inputs, schema, messages).then(async validation => {
+            if (await validation.fails()) {
                 return Promise.reject(validation.errors())
             } else {
                 return Promise.resolve(true)
