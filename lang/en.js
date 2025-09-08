@@ -28,6 +28,7 @@ module.exports = {
     'email': 'The :attribute must be a valid email address.',
     'ends_with': 'The :attribute must end with one of the following: :value',
     'exists': 'The selected :attribute is invalid.',
+    'not_exists': 'The selected :attribute is already taken.',
     'file': 'The :attribute must be a file.',
     'filled': 'The :attribute field must have a value.',
     'gt': {

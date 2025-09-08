@@ -1,6 +1,6 @@
 var fileType = require('file-type');
 const File = require('@ostro/contracts/container/file')
-
+const Database = require('@ostro/support/facades/database')
 function leapYear(year) {
     return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 }
@@ -338,6 +338,27 @@ var rules = {
         return typeof val !== 'undefined';
     },
 
+    exists: async function (val) {
+        var [table, column] = this.getParameters();
+        var values = Array.isArray(val) ? val : [val];
+        const exists = await Database.table(table).whereIn(column, values).exists()
+
+        if (!exists) {
+            return false;
+        }
+        return true;
+    },
+    not_exists: async function (val) {
+         var [table, column] = this.getParameters();
+        var values = Array.isArray(val) ? val : [val];
+        const exists = await Database.table(table).whereIn(column, values).exists()
+
+        if (!exists) {
+            return true;
+        }
+        return false;
+    },
+
     after: function (val, req) {
         var val1 = this.validator.input[req];
         var val2 = val;
@@ -546,7 +567,6 @@ Rule.prototype = {
     },
 
     _getValueType: function () {
-        return this.attribute;
         if (typeof this.inputValue === 'number' || this.validator._hasNumericRule(this.attribute)) {
             return 'numeric';
         }
