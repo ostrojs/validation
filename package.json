@@ -1,35 +1,53 @@
 {
-  "name": "@ostro/validation",
-  "version": "1.1.0",
-  "description": "Validation module for OstroJS",
-  "main": "validationManager.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@ostro/support": "^1.0.11",
-    "@ostro/contracts": "^1.0.2",
-    "file-type": "^16.5.1"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "engineStrict": true,
-  "keywords": [
-    "validator",
-    "validation"
-  ],
-  "author": "amar",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ostrojs/validation.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ostrojs/validation/issues"
-  },
-  "homepage": "https://github.com/ostrojs/validation#readme",
-  "engines": {
-    "node": ">=12.0.0"
-  }
+    "name": "@ostro/validation",
+    "version": "2.0.0-alpha.1",
+    "description": "Validation module for OstroJS",
+    "main": "build/validationManager.js",
+    "types": "build/validationManager.d.ts",
+    "files": [
+        "build"
+    ],
+    "exports": {
+        ".": {
+            "types": "./build/validationManager.d.ts",
+            "default": "./build/validationManager.js"
+        },
+        "./*": {
+            "types": "./build/*.d.ts",
+            "default": "./build/*.js"
+        }
+    },
+    "scripts": {
+        "build": "npx tsc -p tsconfig.build.json && node scripts/build.js",
+        "prepublishOnly": "npm run build",
+        "test": "npx c8 npx jest",
+        "clean": "rm -rf build coverage"
+    },
+    "dependencies": {
+        "@ostro/contracts": "^2.0.0-alpha.1",
+        "@ostro/support": "^2.0.0-alpha.1",
+        "file-type": "^16.5.1"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "engineStrict": true,
+    "keywords": [
+        "validator",
+        "validation"
+    ],
+    "author": "amar",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ostrojs/validation.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ostrojs/validation/issues"
+    },
+    "homepage": "https://github.com/ostrojs/validation#readme",
+    "devDependencies": {
+        "@types/node": "^22.20.5",
+        "typescript": "^5.8.0"
+    }
 }
