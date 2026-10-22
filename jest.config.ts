@@ -29,10 +29,6 @@ export default {
         "/build/"
     ],
     "moduleNameMapper": {
-        "^@ostro/support/(.*)$": "<rootDir>/../support/src/$1",
-        "^@ostro/support$": "<rootDir>/../support/src",
-        "^@ostro/contracts/(.*)$": "<rootDir>/../contracts/src/$1",
-        "^@ostro/contracts$": "<rootDir>/../contracts/src",
         "^@ostro/validation/(.*)$": "<rootDir>/src/$1",
         "^@ostro/validation$": "<rootDir>/src/validationManager"
     },
