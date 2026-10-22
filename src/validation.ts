@@ -1,4 +1,3 @@
-import '@ostro/support/helpers';
 import Rules from './rules';
 import Lang from './lang';
 import Attributes from './attributes';
