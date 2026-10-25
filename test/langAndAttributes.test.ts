@@ -1,3 +1,4 @@
+import { describe, test, it, expect } from "@jest/globals";
 import Lang from '../src/lang';
 import Messages from '../src/messages';
 import Attributes from '../src/attributes';

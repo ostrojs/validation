@@ -1,12 +1,12 @@
 import Validation from './validation';
 import { Macroable } from '@ostro/support/macro';
 
-const kApp: unique symbol = Symbol('app');
-
 /**
  * Class ValidationManager.
  */
 class ValidationManager extends Macroable {
+    #app: any;
+
     /**
      * Create a new instance.
      *
@@ -14,9 +14,7 @@ class ValidationManager extends Macroable {
      */
     constructor(app: any) {
         super();
-        Object.defineProperty(this, kApp, {
-            value: app,
-        });
+        this.#app = app;
     }
 
     /**
@@ -102,7 +100,7 @@ class ValidationManager extends Macroable {
      * @returns The method result from Validation
      */
     public static __call(target: any, method: string, args: any[]): any {
-        return (Validation as any)[method](...args);
+        return Validation[method](...args);
     }
 
     /**
@@ -114,7 +112,7 @@ class ValidationManager extends Macroable {
      * @returns The method result from Validation
      */
     public __call(target: any, method: string, args: any[]): any {
-        return (Validation as any)[method](...args);
+        return Validation[method](...args);
     }
 }
 
