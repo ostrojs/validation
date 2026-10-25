@@ -8,6 +8,7 @@ import ValidationException from './validationException';
  * Class Validator.
  */
 class Validator {
+    static [key: string]: any;
     declare public lang: string;
     declare public numericRules: string[];
     declare public attributeFormatter: (attribute: string) => string;

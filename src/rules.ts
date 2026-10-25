@@ -22,9 +22,9 @@ async function fileDetails(val: any): Promise<{ ext: string | null; mime: string
     const buf = typeof val.getBufferData === 'function' ? val.getBufferData() : val.buffer;
     let detected: any = null;
     if (typeof fileType === 'function') {
-        detected = (fileType as any)(buf);
-    } else if (fileType && typeof (fileType as any).fromBuffer === 'function') {
-        detected = await (fileType as any).fromBuffer(buf);
+        detected = (fileType as (b: Buffer) => unknown)(buf);
+    } else if (fileType && typeof (fileType as { fromBuffer?: (b: Buffer) => Promise<unknown> }).fromBuffer === 'function') {
+        detected = await (fileType as { fromBuffer: (b: Buffer) => Promise<unknown> }).fromBuffer(buf);
     }
     return detected || {
         ext: typeof val.getExtension === 'function' ? val.getExtension() : null,
@@ -649,7 +649,8 @@ class Rule {
             return value.length;
         }
         if (value instanceof File) {
-            return (value as any).buffer?.length ? (value as any).buffer.length / 1024 : 0;
+            const buf = (value as { buffer?: Buffer }).buffer;
+            return buf?.length ? buf.length / 1024 : 0;
         }
 
         if (typeof value === 'number') {
